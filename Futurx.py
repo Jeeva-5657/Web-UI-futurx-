@@ -7,12 +7,16 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from webdriver_manager.chrome import ChromeDriverManager
+import tempfile
 
 options = Options()
 # options.add_argument('--headless')  
 options.add_argument('--enable-unsafe-swiftshader')
 options.add_argument('--disable-gpu')
 options.add_argument('--private')  
+user_data_dir = tempfile.mkdtemp()
+
+options.add_argument(f"user-data-dir={user_data_dir}") 
 
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
