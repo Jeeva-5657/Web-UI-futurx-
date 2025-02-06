@@ -6,21 +6,26 @@ on:
       - master   
 
 jobs:
-  test:
-    runs-on: windows-latest 
+  build:
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3 
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
-          pip install selenium webdriver-manager
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run Selenium Tests
-        run: python Futurx.py  
+      - name: Install ChromeDriver
+        uses: googlechrome/chrome-launcher-action@v0.2.0
+
+      - name: Run Tests
+        run: |
+          python Futurx.py

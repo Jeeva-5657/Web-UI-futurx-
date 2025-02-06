@@ -1,20 +1,20 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from webdriver_manager.chrome import ChromeDriverManager
 
 options = Options()
-# options.add_argument('--headless') 
+# options.add_argument('--headless')  
 options.add_argument('--enable-unsafe-swiftshader')
 options.add_argument('--disable-gpu')
-options.add_argument('--private') 
-chrome_driver_path ="C:/Users/JEEVA/Downloads/chromedriver-win64 (1)/chromedriver-win64/chromedriver.exe"
+options.add_argument('--private')  
 
-service = Service(chrome_driver_path)  
+service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 
 wait = WebDriverWait(driver, 30)
