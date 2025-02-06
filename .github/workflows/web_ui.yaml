@@ -1,4 +1,4 @@
-name: Selenium Test
+name: Selenium Test with Chrome
 
 on:
   push:
@@ -7,21 +7,21 @@ on:
 
 jobs:
   selenium:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest  
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Chrome
+    - name: Set up Chrome
       uses: actions/setup-chrome@v2
       with:
         chrome-version: 'latest'
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r requirements.txt  # Install dependencies like selenium
 
     - name: Run tests
       run: |
-        python your_test_script.py
+        python your_test_script.py  # Run your test script here
