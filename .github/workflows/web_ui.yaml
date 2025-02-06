@@ -20,12 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install webdriver-manager
+          pip install selenium webdriver-manager
 
-      - name: Set up Google Chrome
-        uses: browser-actions/setup-chrome@v2
+      - name: Set up ChromeDriver
+        uses: webdrivers/setup-chromedriver@v2 
 
       - name: Run the tests
         run: |
-          python Futurx.py  
+          python Futurx.py  # Replace with your actual script
