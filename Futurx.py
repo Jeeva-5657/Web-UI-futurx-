@@ -18,8 +18,7 @@ user_data_dir = tempfile.mkdtemp()
 
 options.add_argument(f"user-data-dir={user_data_dir}") 
 
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 wait = WebDriverWait(driver, 30)
 

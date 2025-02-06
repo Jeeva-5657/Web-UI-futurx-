@@ -1,4 +1,4 @@
-name: Selenium Test with Chrome
+name: Selenium Test Workflow
 
 on:
   push:
@@ -6,28 +6,26 @@ on:
       - master
 
 jobs:
-  selenium:
-    runs-on: ubuntu-latest 
+  test:
+    runs-on: ubuntu-latest  
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Google Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
-    - name: Set up Chromedriver
-      run: |
-        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-        curl -sS -o /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
-        sudo unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
-        sudo chmod +x /usr/local/bin/chromedriver
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install webdriver-manager
 
-    - name: Install dependencies
-      run: |
-        pip install selenium webdriver-manager  
+      - name: Set up Google Chrome
+        uses: browser-actions/setup-chrome@v2
 
-    - name: Run tests
-      run: |
-        python Futurx.py  # Run your test script here
+      - name: Run the tests
+        run: |
+          python Futurx.py  
