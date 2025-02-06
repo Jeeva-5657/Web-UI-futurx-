@@ -30,4 +30,4 @@ jobs:
 
     - name: Run tests
       run: |
-        python your_test_script.py  # Run your test script here
+        python Futurx.py  # Run your test script here
