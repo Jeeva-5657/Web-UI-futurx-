@@ -3,20 +3,27 @@ name: Selenium Test with Chrome
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   selenium:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest  # You can change this to another runner if needed
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Chrome
-      uses: actions/setup-chrome@v2
-      with:
-        chrome-version: 'latest'
+    - name: Set up Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Set up Chromedriver
+      run: |
+        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        curl -sS -o /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
+        sudo unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
 
     - name: Install dependencies
       run: |
