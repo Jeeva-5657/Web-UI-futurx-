@@ -280,7 +280,7 @@ try:
         print("Success : HomePage")
 except:
         print("Error : Can't go to HomePage")
-gi
+
 time.sleep(10)
 driver.quit()
 
