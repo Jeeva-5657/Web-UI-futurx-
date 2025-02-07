@@ -8,6 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 import tempfile
+import os
+
+os.system("pkill chrome || true") 
+os.system("pkill chromedriver || true")  
+time.sleep(2)  
 
 options = Options()
 # options.add_argument('--headless')  
