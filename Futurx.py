@@ -13,10 +13,11 @@ options = Options()
 # options.add_argument('--headless')  
 options.add_argument('--enable-unsafe-swiftshader')
 options.add_argument('--disable-gpu')
-options.add_argument('--private')  
+options.add_argument("--no-sandbox") 
+options.add_argument("--disable-dev-shm-usage") 
 user_data_dir = tempfile.mkdtemp()
 
-#options.add_argument(f"user-data-dir={user_data_dir}") 
+options.add_argument(f"--user-data-dir={user_data_dir}")
 
 service = Service("/usr/bin/chromedriver")
 driver = webdriver.Chrome(service=service, options=options)
