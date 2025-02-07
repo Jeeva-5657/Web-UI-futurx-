@@ -16,7 +16,7 @@ options.add_argument('--disable-gpu')
 options.add_argument('--private')  
 user_data_dir = tempfile.mkdtemp()
 
-options.add_argument(f"user-data-dir={user_data_dir}") 
+#options.add_argument(f"user-data-dir={user_data_dir}") 
 
 service = Service("/usr/bin/chromedriver")
 driver = webdriver.Chrome(service=service, options=options)
