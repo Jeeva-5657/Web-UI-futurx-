@@ -15,7 +15,7 @@ os.system("pkill chromedriver || true")
 time.sleep(2)  
 
 options = Options()
-# options.add_argument('--headless')  
+options.add_argument('--headless')  
 options.add_argument('--enable-unsafe-swiftshader')
 options.add_argument('--disable-gpu')
 options.add_argument("--no-sandbox") 
